@@ -6,8 +6,12 @@ import Axios from 'axios'
 import { Link } from 'react-router-dom'
 
 const formSchema = yup.object().shape({
-    email: yup.string().email('Must be a valid email'),
-    password: yup.string().min(4, 'Must be at least 4 characters long')
+    email: yup
+        .string()
+        .email('Must be a valid email'),
+    password: yup
+        .string()
+        .min(4, 'Must be at least 4 characters long')
 })
 
 const Register = (props) => {
