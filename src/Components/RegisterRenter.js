@@ -65,13 +65,13 @@ const Register = (props) => {
 
         event.preventDefault()
 
-        Axios.post('https://pintereacharticles.herokuapp.com/api/auth/register', renter)
-            .then((res)=>{
-                props.history.push('/login')
-            })
-            .catch((res) => {
-                console.log(res)
-            })
+        // Axios.post('NEED LINK', renter)
+        //     .then((res)=>{
+        //         props.history.push('/login')
+        //     })
+        //     .catch((res) => {
+        //         console.log(res)
+        //     })
     }
 
     const [buttonDisabled, setButtonDisabled] = useState(true)
@@ -83,10 +83,10 @@ const Register = (props) => {
             onSubmit={formSubmit}>
 
             <h1 className='text-center'>
-                <span className='font-weight-bold'>Pintereach</span>
+                <span className='font-weight-bold'>Use My Tech Stuff</span>
             </h1>
 
-            <h2 className='text-center'>Register</h2>
+            <h2 className='text-center'>Renter Register</h2>
 
             <div className='form-group' > 
                 <label htmlFor='emailId'>Email:</label>
