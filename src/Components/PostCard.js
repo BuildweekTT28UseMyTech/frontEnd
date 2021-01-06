@@ -4,7 +4,7 @@ import '../style/Card.css'
 
 
 
-const ArticleCard = props => {
+const PostCard = props => {
 
     return (
             <div className='card-container'>
@@ -18,4 +18,4 @@ const ArticleCard = props => {
     )
 }
 
-export default ArticleCard
+export default PostCard
