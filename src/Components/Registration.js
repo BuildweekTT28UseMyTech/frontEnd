@@ -11,27 +11,38 @@ const formSchema = yup.object().shape({
         .email('Must be a valid email'),
     password: yup
         .string()
-        .min(4, 'Must be at least 4 characters long')
+        .min(4, 'Must be at least 4 characters long'),
+    username: yup
+        .string()
+        .min(3, 'Must be at least 3 characters long'),
+    type: yup
+        .string()
+        .required('Please specify if you are an Owner or Renter')
+
 })
 
 const Register = (props) => {
 
-    const [renter, setRenter] = useState({
+    const [user, setUser] = useState({
         email: '',
-        password: ''
+        password: '',
+        username: '',
+        type: ''
     })
 
     const [errors, setErrors] = useState({
         email: '',
-        password: ''
+        password: '',
+        username: '',
+        type: ''
     })
 
     useEffect(() => {
-        formSchema.isValid(renter)
+        formSchema.isValid(user)
             .then(valid => {
                 setButtonDisabled(!valid)
             })
-    }, [renter])
+    }, [user])
 
     const validate = event => {
 
@@ -60,8 +71,8 @@ const Register = (props) => {
 
         let value = event.target.value
 
-        setRenter({
-            ...renter, [event.target.name]: value
+        setUser({
+            ...user, [event.target.name]: value
         })
     }
 
@@ -69,7 +80,7 @@ const Register = (props) => {
 
         event.preventDefault()
 
-        // Axios.post('NEED LINK', renter)
+        // Axios.post('NEED LINK', user)
         //     .then((res)=>{
         //         props.history.push('/login')
         //     })
@@ -90,7 +101,7 @@ const Register = (props) => {
                 <span className='font-weight-bold'>Use My Tech Stuff</span>
             </h1>
 
-            <h2 className='text-center'>Renter Register</h2>
+            <h2 className='text-center'> Registration </h2>
 
             <div className='form-group' > 
                 <label htmlFor='emailId'>Email:</label>
@@ -100,7 +111,7 @@ const Register = (props) => {
                         id='emailId'
                         class='form-control'
                         placeholder='Create an email'
-                        value={renter.email}
+                        value={user.email}
                         onChange={inputChange}
                     />
                     { errors.email.length > 0 ? ( <p className='error' > { errors.email } </p> ) : null  }
@@ -114,12 +125,53 @@ const Register = (props) => {
                         id='passwordId'
                         class='form-control'
                         placeholder='Create an password'
-                        value={renter.password}
+                        value={user.password}
                         onChange={inputChange}
                     />
 
                     {errors.password.length > 0 ? (<p className='error' > { errors.password} </p>) : null}    
             </div>
+
+            <div className='form-group'>
+                <label htmlFor='usernameId'> Username: </label>
+                    <input
+                        type='text'
+                        name='username'
+                        id='usernameId'
+                        class='form-control'
+                        placeholder='Create an username'
+                        value={user.username}
+                        onChange={inputChange}
+                    />
+
+                    {errors.username.length > 0 ? (<p className='error' > { errors.username} </p>) : null}    
+            </div>
+
+            <ul>
+                <li>
+                    <label>
+                            <input
+                                type='radio'
+                                value='owner'
+                                checked={user.type === 'owner'}
+                                onChange={inputChange}
+                            />
+                            Owner
+                    </label>
+                </li>
+
+                <li>
+                    <label>
+                            <input
+                                type='radio'
+                                value='renter'
+                                checked={user.type === 'renter'}
+                                onChange={inputChange}
+                            />
+                            Renter
+                    </label>
+                </li>
+            </ul>
 
             <button disabled = {buttonDisabled} className='btn btn-primary btn-lg btn-block mt-3 mb-3' > Confirm Registration </button>
 
