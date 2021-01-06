@@ -1,6 +1,20 @@
-import React from "react";
+import React, {useState} from "react";
 export default function OwnerForm(props) {
   const { values, update, submit } = props;
+
+    const [post, setPost] = useState({
+        tool: "",
+        period: "",
+        price: ""
+    })
+
+    useEffect(() => {
+        effect
+        return () => {
+            cleanup
+        }
+    }, [input])
+
   const onChange = (evt) => {
     // input from event
     const { name, value } = evt.target;
@@ -8,15 +22,15 @@ export default function OwnerForm(props) {
     // `update` callback 
   };
   const onSubmit = (evt) => {
-    // no reload!
+    // noo reload!
     evt.preventDefault();
-    // callback coming in through props
+    // callback coming in through propss
     submit();
   };
   return (
     <form className="form container" onSubmit={onSubmit}>
       <div className="form-group inputs">
-        {/*inputs*/}
+        {/*inputss*/}
         <label>
           Tool
           <input
