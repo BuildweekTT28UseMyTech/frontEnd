@@ -22,7 +22,7 @@ function Login(props) {
 
     const [buttonDisabled, setButtonDisabled] = useState(true)
 
-    const [owner, setOwner] = useState({
+    const [user, setUser] = useState({
         email: '',
         password: ''
     })
@@ -33,15 +33,15 @@ function Login(props) {
     })
 
     useEffect(() => {
-        Schema.isValid(owner).then(valid => {
+        Schema.isValid(user).then(valid => {
             setButtonDisabled(!valid)
         })
-    }, [owner])
+    }, [user])
 
     const handleSubmit = e => {
         e.preventDefault()
         // console.log('click')
-        // Axios.post('NEED LINK', owner)
+        // Axios.post('NEED LINK', user)
         //     .then((res) => {
         //         console.log(res.data)
         //         props.login(res.data)
@@ -70,12 +70,12 @@ function Login(props) {
         e.persist()
 
         const newUserData = {
-            ...owner,
+            ...user,
             [e.target.name]: e.target.type === 'checkbox' ? e.target.checked : e.target.value
         }
 
         validateChange(e)
-        setOwner(newUserData)
+        setUser(newUserData)
     }
 
     return (
@@ -93,7 +93,7 @@ function Login(props) {
                     name='email'
                     type='email'
                     class='form-control'
-                    value={owner.email}
+                    value={user.email}
                     onChange={inputChange}
                     placeholder='Enter your Email address' 
                 />
@@ -105,7 +105,7 @@ function Login(props) {
                     name='password'
                     type='password'
                     class='form-control'
-                    value={owner.password}
+                    value={user.password}
                     onChange={inputChange}
                     placeholder='Enter your Password' 
                 />
