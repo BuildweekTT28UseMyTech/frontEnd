@@ -10,3 +10,5 @@ export const REGISTER = 'register_action'
 export const login = (data) => (dispatch) => {
     dispatch ({ type: LOGIN, payload: data})
 }
+
+//Testing 1 2 3
