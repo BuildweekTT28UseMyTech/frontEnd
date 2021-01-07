@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import * as yup from 'yup'
 //import style from 'styled-components'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import axios from 'axios'
 import { login } from '../actions'
-import { Link } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
+import { ItemContext } from './context/ItemContext'
 
 const Schema = yup.object().shape ({
     username: yup
@@ -17,16 +18,16 @@ const Schema = yup.object().shape ({
 }) 
 
 function Login(props) {
-
+    const { push } = useHistory();
     const [buttonDisabled, setButtonDisabled] = useState(true)
 
     const [user, setUser] = useState({
-        email: '',
+        username: '',
         password: ''
     })
 
     const [errors, setErrors] = useState({
-        email: '',
+        username: '',
         password: ''
     })
 
@@ -45,7 +46,17 @@ function Login(props) {
         'Content-Type': 'application/x-www-form-urlencoded'
     }
     })
-    .then(res => console.log(res.data))
+    .then((response) => {
+        localStorage.setItem("token", response.data.access_token);
+        push("/home");
+        setUser({
+        username: '',
+        password: ''});
+
+    })
+    .catch((error) => {
+        alert(`Oops.. Looks like there was an error. \n"${error}"`);
+    });
     }
 
     const validateChange = e => {
