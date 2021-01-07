@@ -4,7 +4,7 @@ export const axiosWithAuth = () => {
     const token = window.localStorage.getItem('token')
 
     return axios.create ({
-        baseURL: 'https://rheact-usemytech.herokuapp.com/api/',
+        baseURL: 'https://rheact-usemytech.herokuapp.com/',
         headers: {
             authorization: token
         }

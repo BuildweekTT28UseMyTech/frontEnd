@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import * as yup from 'yup'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import '../style/login.css'
-import Axios from 'axios'
+import axios from 'axios'
 import { Link } from 'react-router-dom'
 
 const formSchema = yup.object().shape({
-    email: yup
+    primaryemail: yup
         .string()
         .email('Must be a valid email'),
     password: yup
@@ -24,16 +23,16 @@ const formSchema = yup.object().shape({
 const Register = (props) => {
 
     const [user, setUser] = useState({
-        email: '',
-        password: '',
         username: '',
+        password: '',
+        primaryemail: '',
         type: ''
     })
 
     const [errors, setErrors] = useState({
-        email: '',
-        password: '',
         username: '',
+        password: '',
+        primaryemail: '',
         type: ''
     })
 
@@ -104,21 +103,21 @@ const Register = (props) => {
             <h2 className='text-center'> Registration </h2>
 
             <div className='form-group' > 
-                <label htmlFor='emailId'>Email:</label>
+                <label htmlFor='usernameId'>Username:</label>
                     <input
-                        name='email'
-                        type='email'
-                        id='emailId'
+                        name='username'
+                        type='username'
+                        id='usernameId'
                         class='form-control'
-                        placeholder='Create an email'
-                        value={user.email}
+                        placeholder='Create a username'
+                        value={user.username}
                         onChange={inputChange}
                     />
-                    { errors.email.length > 0 ? ( <p className='error' > { errors.email } </p> ) : null  }
+                    { errors.username.length > 0 ? ( <p className='error' > { errors.username } </p> ) : null  }
             </div>
 
             <div className='form-group'>
-                <label htmlFor='passwordId'>Password:</label>
+                <label htmlFor='passwordId'>Password: </label>
                     <input
                         type='password'
                         name='password'
@@ -133,18 +132,18 @@ const Register = (props) => {
             </div>
 
             <div className='form-group'>
-                <label htmlFor='usernameId'> Username: </label>
+                <label htmlFor='primaryemailId'> Email: </label>
                     <input
                         type='text'
-                        name='username'
-                        id='usernameId'
+                        name='primaryemail'
+                        id='primaryemailId'
                         class='form-control'
-                        placeholder='Create an username'
-                        value={user.username}
+                        placeholder='Create an email'
+                        value={user.primaryemail}
                         onChange={inputChange}
                     />
 
-                    {errors.username.length > 0 ? (<p className='error' > { errors.username} </p>) : null}    
+                    {errors.primaryemail.length > 0 ? (<p className='error' > { errors.primaryemail} </p>) : null}    
             </div>
 
             <ul>
