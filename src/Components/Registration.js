@@ -14,9 +14,9 @@ const formSchema = yup.object().shape({
     username: yup
         .string()
         .min(3, 'Must be at least 3 characters long'),
-    type: yup
-        .string()
-        .required('Please specify if you are an Owner or Renter')
+    // type: yup
+        // .string()
+        // .required('Please specify if you are an Owner or Renter')
 
 })
 
@@ -146,31 +146,38 @@ const Register = (props) => {
                     {errors.primaryemail.length > 0 ? (<p className='error' > { errors.primaryemail} </p>) : null}    
             </div>
 
-            <ul>
-                <li>
+
+
+
+          
+    
                     <label>
                             <input
                                 type='radio'
+                                id='owner'
                                 value='owner'
-                                checked={user.type === 'owner'}
-                                onChange={inputChange}
+                                name='radiobutton'
+                                // checked={user.type === 'owner'}
+                                // onChange={inputChange}
                             />
                             Owner
                     </label>
-                </li>
+        
 
-                <li>
+                
                     <label>
                             <input
                                 type='radio'
+                                id='renter'
                                 value='renter'
-                                checked={user.type === 'renter'}
-                                onChange={inputChange}
+                                name='radiobutton'
+                                // checked={user.type === 'renter'}
+                                // onChange={inputChange}
                             />
                             Renter
                     </label>
-                </li>
-            </ul>
+              
+         
 
             <button disabled = {buttonDisabled} className='btn btn-primary btn-lg btn-block mt-3 mb-3' > Confirm Registration </button>
 
