@@ -5,17 +5,18 @@ import Login from './Components/Login'
 import Register from './Components/Registration'
 import { ItemContext } from './Components/context/ItemContext'
 import { PrivateRoute } from './Utils/PrivateRoute'
-
+import OwnerForm from './Components/CreatePostForm'
+import PostList from './Components/PostList'
 export default function App() {
     return (
         <>
         <Router>
-            <ItemContext.Provider >
+            {/* <ItemContext.Provider value> */}
         <Login />
         <Register />
-        <PrivateRoute exact path="/login" component={Login} />
-        <PrivateRoute exact path="/register" component={Register} />
-        </ItemContext.Provider>
+        <PrivateRoute exact path="/home" component={PostList} />
+        <PrivateRoute exact path="/add" component={OwnerForm} />
+        {/* </ItemContext.Provider> */}
         </Router>
         </>
 

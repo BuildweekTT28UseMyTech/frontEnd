@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../style/Card.css'
+// import '../style/Card.css'
 
 const PostCard = props => {
 
@@ -11,7 +11,7 @@ const PostCard = props => {
                         <h1 className='card-title'><span className='props'>{props.itemname}</span></h1>
                         <p className='card-text'> Price: <span className='props'>{props.price}</span></p>
                         <form>
-                            <input type="button" onclick="alert('Thank you for the request the owner will get back to you shortly.')" value="Request for Rental"/>
+                            <input type="button" value="Request for Rental"/>
                         </form>
                     </div>
                 </div>

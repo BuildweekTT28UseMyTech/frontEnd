@@ -52,6 +52,7 @@ function Login(props) {
         setUser({
         username: '',
         password: ''});
+        console.log(response.data)
 
     })
     .catch((error) => {
