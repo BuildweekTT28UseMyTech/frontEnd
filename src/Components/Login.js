@@ -2,21 +2,19 @@ import React, { useState, useEffect } from 'react'
 import * as yup from 'yup'
 //import style from 'styled-components'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import '../style/login.css'
-import Axios from 'axios'
+import axios from 'axios'
 import { login } from '../actions'
-import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 const Schema = yup.object().shape ({
-    email: yup
+    username: yup
         .string()
-        .required('Email is required for login'),
+        .required('Username is required for login'),
     password: yup
         .string()
         .required('Password is required')
         .min(4, 'Must be at least 4 characters long')  
-})
+}) 
 
 function Login(props) {
 
@@ -40,13 +38,14 @@ function Login(props) {
 
     const handleSubmit = e => {
         e.preventDefault()
-        // console.log('click')
-        // Axios.post('NEED LINK', user)
-        //     .then((res) => {
-        //         console.log(res.data)
-        //         props.login(res.data)
-        //         props.history.push('/home')
-        //     })
+        axios.post('https://rheact-usemytech.herokuapp.com/login', `grant_type=password&username=${user.username}&password=${user.password}`, {
+    headers: {
+        // btoa is converting our client id/client secret into base64
+        Authorization: `Basic ${btoa('lambda-client:lambda-secret')}`,
+        'Content-Type': 'application/x-www-form-urlencoded'
+    }
+    })
+    .then(res => console.log(res.data))
     }
 
     const validateChange = e => {
@@ -83,19 +82,19 @@ function Login(props) {
         <form className='login-form' onSubmit={handleSubmit}>
             <h1 className='text-center'>
                 <span className='font-weight-bold'>Use My Tech Stuff</span>
-            </h1>
+            </h1> 
 
             <h2 className='text-center'>Login</h2>
 
             <div className='form-group'>
-                <label for='email'>Email:</label>
+                <label for='username'>Username:</label>
                 <input
-                    name='email'
-                    type='email'
+                    name='username'
+                    type='username'
                     class='form-control'
-                    value={user.email}
+                    value={user.username}
                     onChange={inputChange}
-                    placeholder='Enter your Email address' 
+                    placeholder='Enter your username' 
                 />
             </div>
 
@@ -127,5 +126,5 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { login })(Login)
+export default Login;
 
